@@ -49,6 +49,7 @@ public class CursoServlet extends HttpServlet {
 
         if(cmd.contains("Cadastrar") || cmd.contains("Alterar")) {
         	System.out.println("Passou pelo if(cmd.contains(\"Cadastrar\") || cmd.contains(\"Alterar\")) ");
+	    c.setNome(nome);
             c.setCarga_horaria(carga_horaria);
             c.setSigla(sigla);
             c.setNota_enade(nota_enade);
@@ -58,6 +59,7 @@ public class CursoServlet extends HttpServlet {
             if (cmd.contains("Cadastrar")) {
                 saida = cadastrarCurso(c);
                 System.out.println("chamar cadastrar ");
+		System.out.println(c);
                 c = null;
             }
             if (cmd.contains("Alterar")) {
