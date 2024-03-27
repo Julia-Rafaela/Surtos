@@ -70,9 +70,9 @@
     <table class="table_round">
         <thead>
             <tr>
-                <th>CÛdigo</th>
+                <th>C√≥digo</th>
                 <th>Nome</th>
-                <th>Carga Hor·ria</th>
+                <th>Carga Hor√°ria</th>
                 <th>Sigla</th>
                 <th>Nota ENADE</th>
             </tr>
@@ -80,11 +80,11 @@
         <tbody>
             <c:forEach var="c" items="${cursos}">
                 <tr>
-                    <td>${c.codigo}</td>
-                    <td>${c.nome}</td>
-                    <td>${c.carga_horaria}</td>
-                    <td>${c.sigla}</td>
-                    <td>${c.nota_enade}</td>
+                    <td><c:out value="${c.codigo }" /></td>
+                    <td><c:out value="${c.nome }" /></td>
+                    <td><c:out value="${c.carga_horaria }" /></td>
+                    <td><c:out value="${c.sigla }" /></td>
+                    <td><c:out value="${c.nota_enade }" /></td>
                 </tr>
             </c:forEach>
         </tbody>
