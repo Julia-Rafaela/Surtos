@@ -48,8 +48,7 @@ public class CursoServlet extends HttpServlet {
         }
 
         if(cmd.contains("Cadastrar") || cmd.contains("Alterar")) {
-        	System.out.println("Passou pelo if(cmd.contains(\"Cadastrar\") || cmd.contains(\"Alterar\")) ");
-	    c.setNome(nome);
+        	c.setNome(nome);
             c.setCarga_horaria(carga_horaria);
             c.setSigla(sigla);
             c.setNota_enade(nota_enade);
@@ -57,27 +56,24 @@ public class CursoServlet extends HttpServlet {
 
         try {
             if (cmd.contains("Cadastrar")) {
+            	
                 saida = cadastrarCurso(c);
-                System.out.println("chamar cadastrar ");
-		System.out.println(c);
+                System.out.println(c);
                 c = null;
             }
             if (cmd.contains("Alterar")) {
-                saida = alterarCurso(c);
-                System.out.println(" chamar alterar ");
+    
                 c = null;
             }
             if (cmd.contains("Excluir")) {
-            	System.out.println(" chamar excluir ");
                 saida = excluirCurso(c);
                 c = null;
             }
             if (cmd.contains("Buscar")) {
-            	System.out.println(" chamar buscar ");
                 c = buscarCurso(c);
             }
             if (cmd.contains("Listar")) {
-            	System.out.println("chamar listar ");
+
                 cursos = listarCurso();
             }
         } catch(SQLException | ClassNotFoundException e) {
@@ -94,10 +90,10 @@ public class CursoServlet extends HttpServlet {
 
 
 	private String cadastrarCurso(Curso c)throws SQLException, ClassNotFoundException {
-		System.out.println("Passou por cadastro");
 		 GenericDao gDao = new GenericDao();
 	        CursoDao pDao = new CursoDao(gDao);
 	        return pDao.iudCurso("I", c);
+	        
 	}
 
 
@@ -105,7 +101,6 @@ public class CursoServlet extends HttpServlet {
 		GenericDao gDao = new GenericDao();
 	    CursoDao pDao = new CursoDao (gDao);
 		String saida = pDao.iudCurso("U", c);
-		System.out.println("Passou por alterar");
 		return saida;
 	}
 
@@ -114,7 +109,6 @@ public class CursoServlet extends HttpServlet {
 		GenericDao gDao = new GenericDao();
 	    CursoDao pDao = new CursoDao (gDao);
 		String saida = pDao.iudCurso("D", c);
-		System.out.println("Passou por excluir");
 		return saida;
 	}
 
@@ -123,7 +117,6 @@ public class CursoServlet extends HttpServlet {
 		GenericDao gDao = new GenericDao();
 	    CursoDao pDao = new CursoDao (gDao);
 	    c = pDao.consultar(c);
-	    System.out.println("Passou por buscar");
 		return c;
 	}
 
@@ -132,9 +125,9 @@ public class CursoServlet extends HttpServlet {
 		GenericDao gDao = new GenericDao();
 	    CursoDao pDao = new CursoDao (gDao);
 	    List<Curso> cursos = pDao.listar();
-	    System.out.println("Passou por listar");
-		 return cursos;
+		return cursos;
 		 
 	}
+	
 
 }
