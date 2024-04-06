@@ -16,7 +16,7 @@
 	<div align="center" class="container">
 		<form action="aluno" method="post">
 			<p class="title"></p>
-			<p class="cadastrar">Cadastre-se</p>
+			<p class="cadastrar">Cadastre o Aluno</p>
 			<table>
 
 				<tr>
@@ -64,7 +64,14 @@
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Data de Conclusão do 2° Grau:</p> <input
+						<p class="title">Telefone:</p> <input class="cadastro" type="tel"
+						id="telefone" name="telefone"
+						value='<c:out value="${aluno.telefone }"></c:out>'>
+					</td>
+				</tr>
+				<tr>
+					<td class="aluno" colspan="4">
+						<p class="title">Data de Conclus�o do 2� Grau:</p> <input
 						class="cadastro" type="date" id="conclusao_segundo_grau"
 						name="conclusao_segundo_grau"
 						value='<c:out value="${aluno.conclusao_segundo_grau }"></c:out>'>
@@ -72,7 +79,7 @@
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Instituição:</p> <input class="cadastro"
+						<p class="title">Institui��o:</p> <input class="cadastro"
 						type="text" id="instituicao_conclusao"
 						name="instituicao_conclusao"
 						value='<c:out value="${aluno.instituicao_conclusao }"></c:out>'>
@@ -80,14 +87,14 @@
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Pontuação Vestibular:</p> <input class="cadastro"
+						<p class="title">Pontua��o Vestibular:</p> <input class="cadastro"
 						type="text" id="pontuacao_vestibular" name="pontuacao_vestibular"
 						value='<c:out value="${aluno.pontuacao_vestibular }"></c:out>'>
 					</td>
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Posição Vestibular:</p> <input class="cadastro"
+						<p class="title">Posi��o Vestibular:</p> <input class="cadastro"
 						type="number" id="posicao_vestibular" name="posicao_vestibular"
 						value='<c:out value="${aluno.posicao_vestibular }"></c:out>'>
 					</td>
@@ -108,11 +115,21 @@
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Semestre Limite de Graduação:</p> <input
+						<p class="title">Semestre Limite de Gradua��o:</p> <input
 						class="cadastro" type="number" id="semestre_limite_graduacao"
 						name="semestre_limite_graduacao"
 						value='<c:out value="${aluno.semestre_limite_graduacao }"></c:out>'>
 					</td>
+				</tr>
+				<tr>
+					<td class="aluno"><label for="curso">Curso:</label></td>
+					<td><select class="input_data" id="curso" name="curso">
+							<option value="">Selecione um Curso</option>
+							<c:forEach var="curso" items="${cursos}">
+								<option value="${curso.codigo}"><c:out
+										value="${curso.nome}" /></option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr class="botoes">
 					<td><input type="submit" id="botao" name="botao"
@@ -133,7 +150,7 @@
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Ano Limite de Graduação:</p> <input
+						<p class="title">Ano Limite de Gradua��o:</p> <input
 						class="calculado" type="number" id="ano_limite_graduacao"
 						name="ano_limite_graduacao"
 						value='<c:out value="${aluno.ano_limite_graduacao }"></c:out>'>
@@ -141,7 +158,7 @@
 				</tr>
 			</table>
 			<p class="aviso">Busque por seu CPF e obtenha seu RA e o Ano
-				limite de Graduação</p>
+				limite de Gradua��o</p>
 		</form>
 	</div>
 	<br />
@@ -160,50 +177,61 @@
 		</c:if>
 	</div>
 	<br />
-	<c:if test="${not empty alunos }">
-		<table class="table_round">
-			<thead>
-				<tr>
-					<th>CPF</th>
-					<th>RA</th>
-					<th>Nome</th>
-					<th>Nome Social</th>
-					<th>Nascimento</th>
-					<th>Email Pessoal</th>
-					<th>Email Corporativo</th>
-					<th>Data Conclusão 2°Grau</th>
-					<th>Instituição de Conclusão</th>
-					<th>Pontuação Vestibular</th>
-					<th>Posição Vestibular</th>
-					<th>Ano Ingresso</th>
-					<th>Ano Limite</th>
-					<th>Semestre Ingresso</th>
-					<th>Semestre Limite</th>
-				</tr>
-			</thead>
-			</tbody>
-			<c:forEach var="a" items="${alunos }">
-				<tr>
-					<td><c:out value="${a.cpf }" /></td>
-					<td><c:out value="${a.ra }" /></td>
-					<td><c:out value="${a.nome }" /></td>
-					<td><c:out value="${a.nome_social }" /></td>
-					<td><c:out value="${a.data_nascimento }" /></td>
-					<td><c:out value="${a.email_pessoal }" /></td>
-					<td><c:out value="${a.email_corporativo }" /></td>
-					<td><c:out value="${a.conclusao_segundo_grau }" /></td>
-					<td><c:out value="${a.instituicao_conclusao }" /></td>
-					<td><c:out value="${a.pontuacao_vestibular }" /></td>
-					<td><c:out value="${a.posicao_vestibular }" /></td>
-					<td><c:out value="${a.ano_ingresso }" /></td>
-					<td><c:out value="${a.ano_limite_graduacao }" /></td>
-					<td><c:out value="${a.semestre_ingresso }" /></td>
-					<td><c:out value="${a.semestre_limite_graduacao }" /></td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
+	<div align="center">
+		<c:choose>
+			<c:when test="${not empty tipoTabela && tipoTabela eq 'Listar'}">
+				<c:if test="${not empty alunos }">
+					<table class="table_round">
+						<thead>
+							<tr>
+								<th>CPF</th>
+								<th>RA</th>
+								<th>Nome</th>
+								<th>Nome Social</th>
+								<th>Nascimento</th>
+								<th>Email Pessoal</th>
+								<th>Email Corporativo</th>
+								<th>Telefone</th>
+								<th>Data Conclus�o 2�Grau</th>
+								<th>Institui��o de Conclus�o</th>
+								<th>Pontua��o Vestibular</th>
+								<th>Posi��o Vestibular</th>
+								<th>Ano Ingresso</th>
+								<th>Ano Limite</th>
+								<th>Semestre Ingresso</th>
+								<th>Semestre Limite</th>
+								<th>Curso</th>
+
+							</tr>
+						</thead>
+						</tbody>
+						<c:forEach var="a" items="${alunos }">
+							<tr>
+								<td><c:out value="${a.cpf }" /></td>
+								<td><c:out value="${a.ra }" /></td>
+								<td><c:out value="${a.nome }" /></td>
+								<td><c:out value="${a.nome_social }" /></td>
+								<td><c:out value="${a.data_nascimento }" /></td>
+								<td><c:out value="${a.email_pessoal }" /></td>
+								<td><c:out value="${a.email_corporativo }" /></td>
+								<td><c:out value="${a.telefone }" /></td>
+								<td><c:out value="${a.conclusao_segundo_grau }" /></td>
+								<td><c:out value="${a.instituicao_conclusao }" /></td>
+								<td><c:out value="${a.pontuacao_vestibular }" /></td>
+								<td><c:out value="${a.posicao_vestibular }" /></td>
+								<td><c:out value="${a.ano_ingresso }" /></td>
+								<td><c:out value="${a.ano_limite_graduacao }" /></td>
+								<td><c:out value="${a.semestre_ingresso }" /></td>
+								<td><c:out value="${a.semestre_limite_graduacao }" /></td>
+								<td><c:out value="${a.curso.nome }" /></td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
+			</c:when>
+		</c:choose>
+	</div>
 </body>
 
 
@@ -334,7 +362,7 @@ form {
 	margin-left: 30px;
 	background-color: #dcdcdc;
 	width: 600px;
-	height: 990px;
+	height: 1100px;
 	padding: 10px;
 	border-radius: 30px;
 }
@@ -377,13 +405,27 @@ form {
 	border-collapse: collapse;
 	margin-bottom: 20px;
 	background-color: #f0f0f0;
-	font-size: 8px;
+	font-size: 10px;
 }
 
 .table_round tr td {
 	border: 1px solid #dddddd;
 	padding: 8px;
-	text-align: left;
+	text-align: center;
+}
+
+.input_data {
+	margin-left: -380px;
+}
+
+select {
+	background-color: #F5F5DC;
+	border-radius: 20px;
+	outline: none;
+	padding: 0 0.6rem;
+	width: 200px;
+	height: 30px;
+	border: 1px solid #C0C0C0;
 }
 </style>
 </html>

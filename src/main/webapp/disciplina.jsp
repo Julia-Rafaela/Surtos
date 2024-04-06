@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="./webapp/style.css">
-<title>Curso</title>
+<title>Disciplina</title>
 </head>
 <body class="tela_aluno">
 	<div class="menu">
@@ -14,16 +14,16 @@
 	</div>
 	<br />
 	<div align="center" class="container">
-		<form action="curso" method="post">
+		<form action="disciplina" method="post">
 			<p class="title"></p>
-			<p class="cadastrar">Cadastre o Curso</p>
+			<p class="cadastrar">Cadastre a Disciplina</p>
 			<table>
 
 				<tr>
 					<td class="aluno" colspan="3">
-						<p class="title">Codigo:</p> <input class="cadastro" type="number"
+						<p class="title">Codigo:</p> <input class="cadastro" type="text"
 						id="codigo" name="codigo" placeholder=""
-						value='<c:out value="${curso.codigo }"></c:out>'> <input
+						value='<c:out value="${disciplina.codigo }"></c:out>'> <input
 						type="submit" id="botao" name="botao" value="Buscar">
 					</td>
 				</tr>
@@ -31,28 +31,28 @@
 					<td class="aluno" colspan="4">
 						<p class="title">Nome:</p> <input class="cadastro" type="text"
 						id="nome" name="nome" placeholder=""
-						value='<c:out value="${curso.nome }"></c:out>'>
+						value='<c:out value="${disciplina.nome }"></c:out>'>
 					</td>
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Carga Horaria:</p> <input class="cadastro"
-						type="text" id="carga_horaria" name="carga_horaria" placeholder=""
-						value='<c:out value="${curso.carga_horaria }"></c:out>'>
+						<p class="title">Hora Inicio:</p> <input class="cadastro"
+						type="time" id="horas_inicio" name="horas_inicio" placeholder=""
+						value='<c:out value="${disciplina.horas_inicio }"></c:out>'>
 					</td>
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Sigla:</p> <input class="cadastro" type="text"
-						id="sigla" name="sigla"
-						value='<c:out value="${curso.sigla }"></c:out>'>
+						<p class="title">Dura��o:</p> <input class="cadastro"
+						type="number" id="duracao" name="duracao"
+						value='<c:out value="${disciplina.duracao }"></c:out>'>
 					</td>
 				</tr>
 				<tr>
 					<td class="aluno" colspan="4">
-						<p class="title">Nota Enade:</p> <input class="cadastro"
-						type="text" id="nota_enade" name="nota_enade"
-						value='<c:out value="${curso.nota_enade }"></c:out>'>
+						<p class="title">Dia Semana:</p> <input class="cadastro"
+						type="text" id="dia_semana" name="dia_semana"
+						value='<c:out value="${disciplina.dia_semana }"></c:out>'>
 					</td>
 				</tr>
 				<tr class="botoes">
@@ -84,25 +84,25 @@
 		</c:if>
 	</div>
 	<br />
-	<c:if test="${not empty cursos }">
+	<c:if test="${not empty disciplinas }">
 		<table class="table_round">
 			<thead>
 				<tr>
 					<th>Codigo</th>
 					<th>Nome</th>
-					<th>Carga Horaria</th>
-					<th>Sigla</th>
-					<th>Nota Enade</th>
+					<th>Hora Inicio</th>
+					<th>Dura��o</th>
+					<th>Dia da Semana</th>
 				</tr>
 			</thead>
 			</tbody>
-			<c:forEach var="c" items="${cursos }">
+			<c:forEach var="d" items="${disciplinas }">
 				<tr>
-					<td><c:out value="${c.codigo }" /></td>
-					<td><c:out value="${c.nome }" /></td>
-					<td><c:out value="${c.carga_horaria }" /></td>
-					<td><c:out value="${c.sigla }" /></td>
-					<td><c:out value="${c.nota_enade }" /></td>
+					<td><c:out value="${d.codigo }" /></td>
+					<td><c:out value="${d.nome }" /></td>
+					<td><c:out value="${d.horas_inicio }" /></td>
+					<td><c:out value="${d.duracao }" /></td>
+					<td><c:out value="${d.dia_semana }" /></td>
 				</tr>
 			</c:forEach>
 			</tbody>
