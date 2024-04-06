@@ -24,14 +24,14 @@ private GenericDao gDao;
 	@Override
 	public String iudCurso(String op, Curso c) throws SQLException, ClassNotFoundException {
 		Connection cc = gDao.getConnection();
-        String sql = "{CALL GerenciarCurso(?,?,?,?,?,?,?)}";
+        String sql = "CALL GerenciarCurso(?,?,?,?,?,?,?)";
         CallableStatement cs = cc.prepareCall(sql);
         cs.setString(1, op);
         cs.setInt(2, c.getCodigo());
         cs.setString(3, c.getNome());
         cs.setString(4, c.getCarga_horaria());
         cs.setString(5, c.getSigla());
-        cs.setString(6, c.getNota_enade());
+        cs.setDouble(6, c.getNota_enade());
         cs.registerOutParameter(7, Types.VARCHAR);
         cs.execute();
         String saida = cs.getString(7);
@@ -50,7 +50,7 @@ private GenericDao gDao;
 	    ps.setString(2, t.getNome());
 	    ps.setString(3, t.getCarga_horaria());
 	    ps.setString(4, t.getSigla());
-	    ps.setString(5, t.getNota_enade());
+	    ps.setDouble(5, t.getNota_enade());
 	    ps.execute();
 	    ps.close();
 	    c.close();
@@ -61,12 +61,12 @@ private GenericDao gDao;
 	@Override
 	public void atualizar(Curso t) throws SQLException, ClassNotFoundException {
 		Connection c = gDao.getConnection();
-		String sql = "UPDATE curso SET nome = ?, carga_horaria = ?, sigla = ?, nota_enade = ?  WHERE codigo = ?";
+		String sql = "UPDATE Curso SET nome = ?, carga_horaria = ?, sigla = ?, nota_enade = ?  WHERE codigo = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1, t.getNome());
 		ps.setString(2, t.getCarga_horaria());
 		ps.setString(4, t.getSigla()); 
-		ps.setString(4, t.getNota_enade()); 
+		ps.setDouble(4, t.getNota_enade()); 
 
 		ps.execute();
 		ps.close();
@@ -78,7 +78,7 @@ private GenericDao gDao;
 	@Override
 	public void excluir(Curso t) throws SQLException, ClassNotFoundException {
 		Connection c = gDao.getConnection();
-		String sql = "DELETE Aluno WHERE cpf = ?";
+		String sql = "DELETE Curso WHERE codigo = ?";
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1, t.getCodigo());
 		ps.execute();
@@ -91,7 +91,7 @@ private GenericDao gDao;
 	@Override
 	public Curso consultar(Curso t) throws SQLException, ClassNotFoundException {
 		 Connection c = gDao.getConnection();
-		    String sql = "SELECT codigo, nome, carga_horaria, sigla, nota_enade FROM curso WHERE codigo = ?";
+		    String sql = "SELECT codigo, nome, carga_horaria, sigla, nota_enade FROM Curso WHERE codigo = ?";
 		    PreparedStatement ps = c.prepareStatement(sql);
 		    ps.setInt(1, t.getCodigo());
 		    ResultSet rs = ps.executeQuery();
@@ -99,7 +99,7 @@ private GenericDao gDao;
 		        t.setNome(rs.getString("nome"));
 		        t.setCarga_horaria(rs.getString("carga_horaria"));
 		        t.setSigla(rs.getString("sigla"));
-		        t.setNota_enade(rs.getString("nota_enade"));
+		        t.setNota_enade(rs.getDouble("nota_enade"));
 		    }
 		    rs.close();
 		    ps.close();
@@ -112,7 +112,7 @@ private GenericDao gDao;
 	public List<Curso> listar() throws SQLException, ClassNotFoundException {
 		  List<Curso> cursos = new ArrayList<>();    
 		    Connection cc = gDao.getConnection();
-		    String sql = "SELECT codigo, nome, carga_horaria, sigla , nota_enade FROM curso"; 
+		    String sql = "SELECT codigo, nome, carga_horaria, sigla , nota_enade FROM Curso"; 
 		    PreparedStatement ps = cc.prepareStatement(sql);
 		    ResultSet rs = ps.executeQuery();
 		    while (rs.next()) {
@@ -121,7 +121,7 @@ private GenericDao gDao;
 		        c.setNome(rs.getString("nome"));
 		        c.setCarga_horaria(rs.getString("carga_horaria"));
 		        c.setSigla(rs.getString("sigla"));
-		        c.setNota_enade(rs.getString("nota_enade"));
+		        c.setNota_enade(rs.getDouble("nota_enade"));
 		        cursos.add(c);
 		    }
 		    rs.close();
@@ -130,5 +130,3 @@ private GenericDao gDao;
 		    return cursos;
 	}
 }
-
-

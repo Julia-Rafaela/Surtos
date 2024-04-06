@@ -1,5 +1,9 @@
 package persistence;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -138,3 +142,7 @@ public class GradeDao implements ICrud<Grade> {
         }
     }
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

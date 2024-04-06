@@ -12,8 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Disciplina;
+<<<<<<< Updated upstream
 import persistence.DisciplinaDao;
 import persistence.GenericDao;
+=======
+import persistence.GenericDao;
+import persistence.DisciplinaDao;
+>>>>>>> Stashed changes
 
 @WebServlet("/disciplina")
 public class DisciplinaServlet extends HttpServlet {

@@ -3,6 +3,9 @@ package model;
 import lombok.Getter;
 import lombok.Setter;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Getter
 @Setter
 public class Curso {
@@ -11,10 +14,12 @@ public class Curso {
 	String nome;
 	String carga_horaria;
 	String sigla;
-	String nota_enade;
-	@Override
+	double nota_enade;
 	
+	@Override
 	public String toString() {
-		return + codigo + nome + carga_horaria + sigla + nota_enade;
+		return nome;
 	}
-}
+	
+	
+	}

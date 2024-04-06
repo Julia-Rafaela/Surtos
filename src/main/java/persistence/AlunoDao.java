@@ -11,7 +11,10 @@ import java.util.List;
 
 import model.Aluno;
 import model.Curso;
+<<<<<<< Updated upstream
 import model.Grade;
+=======
+>>>>>>> Stashed changes
 
 public class AlunoDao implements ICrud<Aluno>, IAlunoDao {
 
@@ -78,6 +81,7 @@ public class AlunoDao implements ICrud<Aluno>, IAlunoDao {
         ps.close();
         c.close();
     }
+<<<<<<< Updated upstream
 
     @Override
     public void excluir(Aluno a) throws SQLException, ClassNotFoundException {
@@ -88,9 +92,51 @@ public class AlunoDao implements ICrud<Aluno>, IAlunoDao {
             ps.executeUpdate();
         }
     }
+=======
+>>>>>>> Stashed changes
 
+    @Override
+    public void excluir(Aluno a) throws SQLException, ClassNotFoundException {
+        Connection c = gDao.getConnection();
+        String sql = "DELETE FROM Aluno WHERE cpf = ?";
+        PreparedStatement ps = c.prepareStatement(sql);
+        ps.setString(1, a.getCpf());
+        ps.execute();
+        ps.close();
+        c.close();
+    }
 
+    @Override
+    public Aluno consultar(Aluno a) throws SQLException, ClassNotFoundException {
+        Connection c = gDao.getConnection();
+        String sql = "SELECT A.ra, A.cpf, A.nome, A.nome_social, A.data_nascimento, A.email_pessoal, A.email_corporativo, A.telefone, A.conclusao_segundo_grau, "
+                + "A.instituicao_conclusao, A.pontuacao_vestibular, A.posicao_vestibular, A.ano_ingresso, A.ano_limite_graduacao, "
+                + "A.semestre_ingresso, A.semestre_limite_graduacao, A.curso AS codigoCurso, C.nome AS nomeCurso "
+                + "FROM Aluno A "
+                + "INNER JOIN Curso C ON C.codigo = A.curso "
+                + "WHERE cpf = ?";
+        PreparedStatement ps = c.prepareStatement(sql);
+        ps.setString(1, a.getCpf());
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            a.setRa(rs.getInt("ra"));
+            a.setCpf(rs.getString("cpf"));
+            a.setNome(rs.getString("nome"));
+            a.setNome_social(rs.getString("nome_social"));
+            a.setData_nascimento(rs.getString("data_nascimento"));
+            a.setEmail_pessoal(rs.getString("email_pessoal"));
+            a.setEmail_corporativo(rs.getString("email_corporativo"));
+            a.setTelefone(rs.getString("telefone"));
+            a.setConclusao_segundo_grau(rs.getString("conclusao_segundo_grau"));
+            a.setInstituicao_conclusao(rs.getString("instituicao_conclusao"));
+            a.setPontuacao_vestibular(rs.getDouble("pontuacao_vestibular"));
+            a.setPosicao_vestibular(rs.getInt("posicao_vestibular"));
+            a.setAno_ingresso(rs.getInt("ano_ingresso"));
+            a.setAno_limite_graduacao(rs.getInt("ano_limite_graduacao"));
+            a.setSemestre_ingresso(rs.getInt("semestre_ingresso"));
+            a.setSemestre_limite_graduacao(rs.getInt("semestre_limite_graduacao"));
 
+<<<<<<< Updated upstream
     @Override
     public Aluno consultar(Aluno a) throws SQLException, ClassNotFoundException {
         Connection c = gDao.getConnection();
@@ -125,6 +171,12 @@ public class AlunoDao implements ICrud<Aluno>, IAlunoDao {
             curso.setCodigo(rs.getInt("codigoCurso"));
             curso.setNome(rs.getString("nomeCurso"));
 
+=======
+            Curso curso = new Curso();
+            curso.setCodigo(rs.getInt("codigoCurso"));
+            curso.setNome(rs.getString("nomeCurso"));
+
+>>>>>>> Stashed changes
             a.setCurso(curso);
         }
         rs.close();

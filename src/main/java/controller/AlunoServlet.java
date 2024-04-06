@@ -13,9 +13,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Aluno;
 import model.Curso;
+<<<<<<< Updated upstream
 import persistence.AlunoDao;
 import persistence.CursoDao;
 import persistence.GenericDao;
+=======
+import persistence.GenericDao;
+import persistence.AlunoDao;
+import persistence.CursoDao;
+>>>>>>> Stashed changes
 
 @WebServlet("/aluno")
 public class AlunoServlet extends HttpServlet {
@@ -117,17 +123,29 @@ public class AlunoServlet extends HttpServlet {
 		}
 			if (cmd.contains("Cadastrar")) {
 				cadastrarAluno(a);
+<<<<<<< Updated upstream
                 saida = "Aluno cadastrada com sucesso";
+=======
+                saida = "Aluno cadastrado com sucesso";
+>>>>>>> Stashed changes
                 a = null;
 			}
 			if (cmd.contains("Alterar")) {
 				alterarAluno(a);
+<<<<<<< Updated upstream
                 saida = "Aluno alterada com sucesso";
+=======
+                saida = "Aluno alterado com sucesso";
+>>>>>>> Stashed changes
                 a = null;
 			}
 			if (cmd.contains("Excluir")) {
 				excluirAluno(a);
+<<<<<<< Updated upstream
                 saida = "Aluno excluída com sucesso";
+=======
+                saida = "Aluno excluído com sucesso";
+>>>>>>> Stashed changes
                 a = null;
 			}
 			if (cmd.contains("Buscar")) {
@@ -167,10 +185,18 @@ public class AlunoServlet extends HttpServlet {
 		
 	}
 
+<<<<<<< Updated upstream
 	private void excluirAluno(Aluno a)throws SQLException, ClassNotFoundException {
 		GenericDao gDao = new GenericDao();
 		AlunoDao alunoDao = new AlunoDao (gDao);
         alunoDao.excluir(a);
+=======
+	private String excluirAluno(Aluno a)throws SQLException, ClassNotFoundException {
+		GenericDao gDao = new GenericDao();
+		AlunoDao pDao = new AlunoDao (gDao);
+		String saida = pDao.iudAluno("D", a);
+		return saida;
+>>>>>>> Stashed changes
 		
 	}
 

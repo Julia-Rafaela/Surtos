@@ -225,6 +225,9 @@ select {
 	height: 30px;
 	border: 1px solid #C0C0C0;
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 </style>
 </html>
