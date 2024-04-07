@@ -12,13 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Disciplina;
-<<<<<<< Updated upstream
 import persistence.DisciplinaDao;
 import persistence.GenericDao;
-=======
-import persistence.GenericDao;
-import persistence.DisciplinaDao;
->>>>>>> Stashed changes
 
 @WebServlet("/disciplina")
 public class DisciplinaServlet extends HttpServlet {
@@ -44,7 +39,7 @@ public class DisciplinaServlet extends HttpServlet {
 		String horas_inicio = request.getParameter("horas_inicio");
 		String duracao = request.getParameter("duracao");
 		String dia_semana = request.getParameter("dia_semana");
-
+	
 		//saida
 		String saida="";
 		String erro="";
