@@ -48,11 +48,7 @@ public class CursoServlet extends HttpServlet {
         }
 
         if(cmd.contains("Cadastrar") || cmd.contains("Alterar")) {
-<<<<<<< Updated upstream
-        	c.setNome(nome);
-=======
 	    c.setNome(nome);
->>>>>>> Stashed changes
             c.setCarga_horaria(carga_horaria);
             c.setSigla(sigla);
             
@@ -63,20 +59,11 @@ public class CursoServlet extends HttpServlet {
 
         try {
             if (cmd.contains("Cadastrar")) {
-            	
                 saida = cadastrarCurso(c);
-<<<<<<< Updated upstream
-                System.out.println(c);
-                c = null;
-            }
-            if (cmd.contains("Alterar")) {
-    
-=======
                 c = null;
             }
             if (cmd.contains("Alterar")) {
                 saida = alterarCurso(c);
->>>>>>> Stashed changes
                 c = null;
             }
             if (cmd.contains("Excluir")) {
@@ -87,10 +74,6 @@ public class CursoServlet extends HttpServlet {
                 c = buscarCurso(c);
             }
             if (cmd.contains("Listar")) {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                 cursos = listarCurso();
             }
         } catch(SQLException | ClassNotFoundException e) {
@@ -110,7 +93,6 @@ public class CursoServlet extends HttpServlet {
 		 GenericDao gDao = new GenericDao();
 	        CursoDao pDao = new CursoDao(gDao);
 	        return pDao.iudCurso("I", c);
-	        
 	}
 
 
@@ -142,14 +124,9 @@ public class CursoServlet extends HttpServlet {
 		GenericDao gDao = new GenericDao();
 	    CursoDao pDao = new CursoDao (gDao);
 	    List<Curso> cursos = pDao.listar();
-<<<<<<< Updated upstream
-		return cursos;
-=======
 	    
 		 return cursos;
->>>>>>> Stashed changes
 		 
 	}
-	
 
 }
