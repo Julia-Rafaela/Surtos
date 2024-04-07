@@ -13,15 +13,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Aluno;
 import model.Curso;
-<<<<<<< Updated upstream
 import persistence.AlunoDao;
 import persistence.CursoDao;
 import persistence.GenericDao;
-=======
-import persistence.GenericDao;
-import persistence.AlunoDao;
-import persistence.CursoDao;
->>>>>>> Stashed changes
 
 @WebServlet("/aluno")
 public class AlunoServlet extends HttpServlet {
@@ -65,7 +59,6 @@ public class AlunoServlet extends HttpServlet {
 		String data_nascimento = request.getParameter("data_nascimento");
 		String email_pessoal = request.getParameter("email_pessoal");
 		String email_corporativo = request.getParameter("email_corporativo");
-		String telefone = request.getParameter("telefone");
 		String conclusao_segundo_grau = request.getParameter("conclusao_segundo_grau");
 		String instituicao_conclusao = request.getParameter("instituicao_conclusao");
 		String pontuacao_vestibular = request.getParameter("pontuacao_vestibular");
@@ -98,7 +91,6 @@ public class AlunoServlet extends HttpServlet {
 	    	 a.setData_nascimento(data_nascimento);
 	    	 a.setEmail_pessoal(email_pessoal);
 	    	 a.setEmail_corporativo(email_corporativo);
-	    	 a.setTelefone(telefone);
 	    	 a.setConclusao_segundo_grau(conclusao_segundo_grau);
 	    	 a.setInstituicao_conclusao(instituicao_conclusao);
 	    	 
@@ -122,30 +114,16 @@ public class AlunoServlet extends HttpServlet {
              a.setCurso(curso);
 		}
 			if (cmd.contains("Cadastrar")) {
-				cadastrarAluno(a);
-<<<<<<< Updated upstream
-                saida = "Aluno cadastrada com sucesso";
-=======
-                saida = "Aluno cadastrado com sucesso";
->>>>>>> Stashed changes
+				saida = cadastrarAluno(a);
                 a = null;
 			}
 			if (cmd.contains("Alterar")) {
-				alterarAluno(a);
-<<<<<<< Updated upstream
-                saida = "Aluno alterada com sucesso";
-=======
-                saida = "Aluno alterado com sucesso";
->>>>>>> Stashed changes
+				saida = alterarAluno(a);
                 a = null;
 			}
 			if (cmd.contains("Excluir")) {
 				excluirAluno(a);
-<<<<<<< Updated upstream
-                saida = "Aluno excluída com sucesso";
-=======
-                saida = "Aluno excluído com sucesso";
->>>>>>> Stashed changes
+			    saida = "Aluno excluída com sucesso";
                 a = null;
 			}
 			if (cmd.contains("Buscar")) {
@@ -185,18 +163,10 @@ public class AlunoServlet extends HttpServlet {
 		
 	}
 
-<<<<<<< Updated upstream
 	private void excluirAluno(Aluno a)throws SQLException, ClassNotFoundException {
 		GenericDao gDao = new GenericDao();
 		AlunoDao alunoDao = new AlunoDao (gDao);
         alunoDao.excluir(a);
-=======
-	private String excluirAluno(Aluno a)throws SQLException, ClassNotFoundException {
-		GenericDao gDao = new GenericDao();
-		AlunoDao pDao = new AlunoDao (gDao);
-		String saida = pDao.iudAluno("D", a);
-		return saida;
->>>>>>> Stashed changes
 		
 	}
 
